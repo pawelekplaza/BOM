@@ -13,12 +13,12 @@ namespace Inftastructure.Mappers
                 cfg.CreateMap<Supplier, SupplierDto>();
 
                 cfg.CreateMap<Product, ProductDto>()
-                    .ForMember(x => x.SupplierCode, m => m.MapFrom(p => p.Supplier.Code));
+                    .ForMember(x => x.SupplierCode, m => m.MapFrom(p => p.Supplier.SupplierCode));
 
                 cfg.CreateMap<Bom, BomDto>()
-                    .ForMember(x => x.ProductCode, m => m.MapFrom(p => p.Product.Code))
-                    .ForMember(x => x.ParentProductCode, m => m.MapFrom(p => p.ParentProduct.Code))
-                    .ForMember(x => x.ChildProductCodes, m => m.MapFrom(p => p.ChildProducts.Select(v => v.Code)));                
+                    .ForMember(x => x.ProductCode, m => m.MapFrom(p => p.Product.ProductCode))
+                    .ForMember(x => x.ParentProductCode, m => m.MapFrom(p => p.ParentProduct.ProductCode))
+                    .ForMember(x => x.ChildProductCodes, m => m.MapFrom(p => p.ChildProducts.Select(v => v.ProductCode)));                
             })
             .CreateMapper();
     }

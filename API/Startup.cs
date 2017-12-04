@@ -29,6 +29,8 @@ namespace API
             });
 
             services.AddScoped<IBomService, BomService>();
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<ISupplierService, SupplierService>();
             services.AddSingleton(AutoMapperConfig.Initialize());            
         }
 

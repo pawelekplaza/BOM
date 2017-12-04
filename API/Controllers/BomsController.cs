@@ -33,7 +33,7 @@ namespace API.Controllers
         {
             return await _bomService.GetAsync(code);
         }
-        
+
         // POST: api/Boms
         [HttpPost]
         public async Task<IActionResult> PostAsync([FromBody]BomDto value)
@@ -41,7 +41,7 @@ namespace API.Controllers
             await _bomService.CreateAsync(value);
             return Ok();
         }
-        
+
         // PUT: api/Boms/5
         [HttpPut("{code}")]
         public async Task<IActionResult> PutAsync(string code, [FromBody]BomDto value)
@@ -49,7 +49,7 @@ namespace API.Controllers
             await _bomService.UpdateAsync(value);
             return Ok();
         }
-        
+
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{code}")]
         public async Task<IActionResult> Delete(string code)

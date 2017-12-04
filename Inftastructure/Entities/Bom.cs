@@ -8,7 +8,7 @@ namespace Inftastructure
     public class Bom
     {
         [Key]
-        public string Code { get; set; } = Guid.NewGuid().ToString("N");
+        public string BomCode { get; set; } = Guid.NewGuid().ToString("N");
 
         [Required(ErrorMessage = "Product is required.")]
         public Product Product { get; set; }

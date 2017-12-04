@@ -27,7 +27,7 @@ namespace Inftastructure.Services
 
         public async Task DeleteAsync(string code)
         {
-            var supplier = _context.Suppliers.Where(v => v.Code.Equals(code)).FirstOrDefault();
+            var supplier = _context.Suppliers.Where(v => v.SupplierCode.Equals(code)).FirstOrDefault();
             if (supplier == null)
                 return;
 
@@ -35,14 +35,21 @@ namespace Inftastructure.Services
             await _context.SaveChangesAsync();
         }
 
-        public Task<IEnumerable<SupplierDto>> GetAllAsync()
+        public async Task<IEnumerable<SupplierDto>> GetAllAsync()
         {
-            throw new System.NotImplementedException();
+            var suppliers = new List<SupplierDto>();
+            foreach (var supplier in _context.Suppliers)
+                suppliers.Add(_mapper.Map<SupplierDto>(supplier));
+
+            await Task.CompletedTask;
+            return suppliers;
         }
 
-        public Task<SupplierDto> GetAsync(string code)
+        public async Task<SupplierDto> GetAsync(string code)
         {
-            throw new System.NotImplementedException();
+            var supplier = _context.Suppliers.FirstOrDefault(v => v.SupplierCode.Equals(code));
+            await Task.CompletedTask;
+            return _mapper.Map<SupplierDto>(supplier);
         }
 
         public Task UpdateAsync(SupplierDto element)

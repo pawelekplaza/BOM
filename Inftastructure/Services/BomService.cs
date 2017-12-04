@@ -21,8 +21,8 @@ namespace Inftastructure.Services
 
         public async Task CreateAsync(BomDto element)
         {
-            var product = _context.Products.Where(v => v.Code.Equals(element.ProductCode)).FirstOrDefault();
-            var parentProduct = _context.Products.Where(v => v.Code.Equals(element.ParentProductCode)).FirstOrDefault();
+            var product = _context.Products.Where(v => v.ProductCode.Equals(element.ProductCode)).FirstOrDefault();
+            var parentProduct = _context.Products.Where(v => v.ProductCode.Equals(element.ParentProductCode)).FirstOrDefault();
             //todo
 
             var bom = new Bom(product, parentProduct, element.Quantity, null);
@@ -32,7 +32,7 @@ namespace Inftastructure.Services
 
         public async Task DeleteAsync(string code)
         {
-            var bom = _context.Boms.Where(v => v.Code.Equals(code)).FirstOrDefault();
+            var bom = _context.Boms.Where(v => v.BomCode.Equals(code)).FirstOrDefault();
             if (bom == null)
                 return;
 
@@ -52,7 +52,7 @@ namespace Inftastructure.Services
 
         public async Task<BomDto> GetAsync(string code)
         {
-            var bom = _context.Boms.Where(v => v.Code.Equals(code)).FirstOrDefault();
+            var bom = _context.Boms.FirstOrDefault(v => v.BomCode.Equals(code));                        
             await Task.CompletedTask;
             return _mapper.Map<BomDto>(bom);
         }
