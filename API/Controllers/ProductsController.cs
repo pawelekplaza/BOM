@@ -15,11 +15,11 @@ namespace API.Controllers
     [Route("api/Products")]
     public class ProductsController : Controller
     {
-        private readonly IProductService _productService;        
+        private readonly IProductService _productService;
 
         public ProductsController(IProductService productService)
         {
-            _productService = productService;            
+            _productService = productService;
         }
 
         // GET: api/Products
@@ -35,23 +35,23 @@ namespace API.Controllers
         {
             return await _productService.GetAsync(code);
         }
-        
+
         // POST: api/Products
         [HttpPost]
-        public async Task<IActionResult> PostAsync([FromBody]ProductDto value)
+        public async Task<IActionResult> PostAsync([FromBody]ProductForCreationDto value)
         {
             await _productService.CreateAsync(value);
             return Ok();
         }
-        
+
         // PUT: api/Products/5
         [HttpPut("{code}")]
-        public async Task<IActionResult> PutAsync(string code, [FromBody]ProductDto value)
+        public async Task<IActionResult> PutAsync(string code, [FromBody]ProductForUpdateDto value)
         {
             await _productService.UpdateAsync(value);
             return Ok();
         }
-        
+
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{code}")]
         public async Task<IActionResult> DeleteAsync(string code)

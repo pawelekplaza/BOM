@@ -33,23 +33,23 @@ namespace API.Controllers
         {
             return await _supplierService.GetAsync(code);
         }
-        
+
         // POST: api/Suppliers
         [HttpPost]
-        public async Task<IActionResult> PostAsync([FromBody]SupplierDto value)
+        public async Task<IActionResult> PostAsync([FromBody]SupplierForCreationDto value)
         {
             await _supplierService.CreateAsync(value);
             return Ok();
         }
-        
+
         // PUT: api/Suppliers/5
         [HttpPut("{code}")]
-        public async Task<IActionResult> PutAsync(string code, [FromBody]SupplierDto value)
+        public async Task<IActionResult> PutAsync(string code, [FromBody]SupplierForUpdateDto value)
         {
             await _supplierService.UpdateAsync(value);
             return Ok();
         }
-        
+
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{code}")]
         public async Task<IActionResult> DeleteAsync(string code)

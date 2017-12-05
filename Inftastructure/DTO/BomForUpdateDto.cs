@@ -2,12 +2,12 @@
 
 namespace Inftastructure.DTO
 {
-    public class BomDto
+    public class BomForUpdateDto
     {
         public string BomCode { get; set; }
         public string ProductCode { get; set; }
         public string ParentProductCode { get; set; }
         public IEnumerable<string> ChildProductCodes { get; set; }
-        public double Quantity { get; set; }
+        public double? Quantity { get; set; }
     }
 }

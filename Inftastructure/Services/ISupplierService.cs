@@ -2,7 +2,7 @@
 
 namespace Inftastructure.Services
 {
-    public interface ISupplierService : IService<SupplierDto>
+    public interface ISupplierService : IService<SupplierDto, SupplierForCreationDto, SupplierForUpdateDto>
     {
     }
 }

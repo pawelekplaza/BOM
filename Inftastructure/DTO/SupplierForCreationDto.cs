@@ -1,8 +1,7 @@
 ﻿namespace Inftastructure.DTO
 {
-    public class SupplierDto
+    public class SupplierForCreationDto
     {
-        public string SupplierCode { get; set; }
         public string Name { get; set; }
         public string Details { get; set; }
     }

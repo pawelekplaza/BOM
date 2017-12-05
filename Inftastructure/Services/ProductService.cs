@@ -19,7 +19,7 @@ namespace Inftastructure.Services
             _mapper = mapper;
         }
 
-        public async Task CreateAsync(ProductDto element)
+        public async Task CreateAsync(ProductForCreationDto element)
         {
             var supplier = _context.Suppliers.Where(v => v.SupplierCode.Equals(element.SupplierCode)).FirstOrDefault();
             var product = new Product(element.Name, element.Description, supplier);
@@ -40,11 +40,11 @@ namespace Inftastructure.Services
         public async Task<IEnumerable<ProductDto>> GetAllAsync()
         {
             var products = new List<ProductDto>();
-            var query = _context.Products.Join(_context.Suppliers, 
-                product => product.SupplierCode, 
+            var query = _context.Products.Join(_context.Suppliers,
+                product => product.SupplierCode,
                 supplier => supplier.SupplierCode,
                 (p, s) => new Product(p.Name, p.Description, s));
-            
+
             foreach (var product in query)
                 products.Add(_mapper.Map<ProductDto>(product));
 
@@ -59,7 +59,7 @@ namespace Inftastructure.Services
             return _mapper.Map<ProductDto>(product);
         }
 
-        public Task UpdateAsync(ProductDto element)
+        public Task UpdateAsync(ProductForUpdateDto element)
         {
             throw new NotImplementedException("Product: UpdateAsync");
         }

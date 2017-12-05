@@ -9,23 +9,23 @@ using System;
 namespace Inftastructure.Services
 {
     public class BomService : IBomService
-    {        
+    {
         private readonly Context _context;
         private readonly IMapper _mapper;
 
         public BomService(Context context, IMapper mapper)
-        {            
+        {
             _context = context;
             _mapper = mapper;
         }
 
-        public async Task CreateAsync(BomDto element)
+        public async Task CreateAsync(BomForCreationDto element)
         {
             var product = _context.Products.Where(v => v.ProductCode.Equals(element.ProductCode)).FirstOrDefault();
             var parentProduct = _context.Products.Where(v => v.ProductCode.Equals(element.ParentProductCode)).FirstOrDefault();
-            //todo
+            //todo child
 
-            var bom = new Bom(product, parentProduct, element.Quantity, null);
+            var bom = new Bom(product, parentProduct, element.Quantity ?? 0, null);
             _context.Boms.Add(bom);
             await _context.SaveChangesAsync();
         }
@@ -52,12 +52,12 @@ namespace Inftastructure.Services
 
         public async Task<BomDto> GetAsync(string code)
         {
-            var bom = _context.Boms.FirstOrDefault(v => v.BomCode.Equals(code));                        
+            var bom = _context.Boms.FirstOrDefault(v => v.BomCode.Equals(code));
             await Task.CompletedTask;
             return _mapper.Map<BomDto>(bom);
         }
 
-        public async Task UpdateAsync(BomDto element)
+        public async Task UpdateAsync(BomForUpdateDto element)
         {
             throw new NotImplementedException("Bom: UpdateAsync");
         }

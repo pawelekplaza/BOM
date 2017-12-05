@@ -23,7 +23,7 @@ namespace Inftastructure.Entities
         }
 
         public Product(string name, string description, Supplier supplier)
-        {            
+        {
             Name = name;
             Description = description;
             Supplier = supplier;

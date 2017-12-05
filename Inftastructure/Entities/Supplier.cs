@@ -6,7 +6,7 @@ namespace Inftastructure.Entities
 {
     public class Supplier
     {
-        [Key]        
+        [Key]
         public string SupplierCode { get; set; } = Guid.NewGuid().ToString("N");
 
         [Required(ErrorMessage = "Name of the supplier is required.")]

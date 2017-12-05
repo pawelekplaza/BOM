@@ -2,7 +2,7 @@
 
 namespace Inftastructure.Services
 {
-    public interface IProductService : IService<ProductDto>
+    public interface IProductService : IService<ProductDto, ProductForCreationDto, ProductForUpdateDto>
     {
     }
 }

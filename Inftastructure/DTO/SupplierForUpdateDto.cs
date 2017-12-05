@@ -1,6 +1,6 @@
 ﻿namespace Inftastructure.DTO
 {
-    public class SupplierDto
+    public class SupplierForUpdateDto
     {
         public string SupplierCode { get; set; }
         public string Name { get; set; }

@@ -4,6 +4,7 @@ using Inftastructure.DTO;
 using Inftastructure.Entities;
 using AutoMapper;
 using System.Linq;
+using System;
 
 namespace Inftastructure.Services
 {
@@ -16,9 +17,9 @@ namespace Inftastructure.Services
         {
             _context = context;
             _mapper = mapper;
-        }    
+        }
 
-        public async Task CreateAsync(SupplierDto element)
+        public async Task CreateAsync(SupplierForCreationDto element)
         {
             var supplier = new Supplier(element.Name, element.Details);
             _context.Suppliers.Add(supplier);
@@ -52,9 +53,9 @@ namespace Inftastructure.Services
             return _mapper.Map<SupplierDto>(supplier);
         }
 
-        public Task UpdateAsync(SupplierDto element)
+        public Task UpdateAsync(SupplierForUpdateDto element)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException("Supplier: UpdateAsync");
         }
     }
 }

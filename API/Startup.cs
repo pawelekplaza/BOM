@@ -31,7 +31,7 @@ namespace API
             services.AddScoped<IBomService, BomService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ISupplierService, SupplierService>();
-            services.AddSingleton(AutoMapperConfig.Initialize());            
+            services.AddSingleton(AutoMapperConfig.Initialize());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,7 +48,7 @@ namespace API
                 .AllowAnyMethod()
                 .AllowAnyOrigin();
             });
-            app.UseMvc();            
+            app.UseMvc();
         }
     }
 }

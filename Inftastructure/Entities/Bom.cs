@@ -24,8 +24,8 @@ namespace Inftastructure
 
         }
 
-        public Bom(Product product, Product parentProduct, double quantity, IEnumerable<Product> childProducts = null)
-        {            
+        public Bom(Product product, Product parentProduct, double quantity, IEnumerable<Product> childProducts)
+        {
             Product = product;
             ParentProduct = parentProduct;
             Quantity = quantity;

@@ -2,7 +2,7 @@
 
 namespace Inftastructure.Services
 {
-    public interface IBomService : IService<BomDto>
+    public interface IBomService : IService<BomDto, BomForCreationDto, BomForUpdateDto>
     {
     }
 }
