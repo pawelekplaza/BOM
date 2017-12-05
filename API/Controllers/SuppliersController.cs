@@ -46,6 +46,7 @@ namespace API.Controllers
         [HttpPut("{code}")]
         public async Task<IActionResult> PutAsync(string code, [FromBody]SupplierForUpdateDto value)
         {
+            value.SupplierCode = code;
             await _supplierService.UpdateAsync(value);
             return Ok();
         }

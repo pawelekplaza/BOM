@@ -13,7 +13,7 @@ namespace Inftastructure.Entities
         public string Name { get; set; }
         public string Details { get; set; }
 
-        protected Supplier()
+        public Supplier()
         {
         }
 

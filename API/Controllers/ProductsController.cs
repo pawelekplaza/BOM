@@ -39,7 +39,7 @@ namespace API.Controllers
         // POST: api/Products
         [HttpPost]
         public async Task<IActionResult> PostAsync([FromBody]ProductForCreationDto value)
-        {
+        {            
             await _productService.CreateAsync(value);
             return Ok();
         }
@@ -48,6 +48,7 @@ namespace API.Controllers
         [HttpPut("{code}")]
         public async Task<IActionResult> PutAsync(string code, [FromBody]ProductForUpdateDto value)
         {
+            value.ProductCode = code;
             await _productService.UpdateAsync(value);
             return Ok();
         }

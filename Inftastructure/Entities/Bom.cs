@@ -7,6 +7,7 @@ namespace Inftastructure
 {
     public class Bom
     {
+        //todo add foreign keys for products
         [Key]
         public string BomCode { get; set; } = Guid.NewGuid().ToString("N");
 
@@ -19,7 +20,7 @@ namespace Inftastructure
         public Product ParentProduct { get; set; }
         public IEnumerable<Product> ChildProducts { get; set; }
 
-        protected Bom()
+        public Bom()
         {
 
         }

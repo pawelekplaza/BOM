@@ -46,6 +46,7 @@ namespace API.Controllers
         [HttpPut("{code}")]
         public async Task<IActionResult> PutAsync(string code, [FromBody]BomForUpdateDto value)
         {
+            value.BomCode = code;
             await _bomService.UpdateAsync(value);
             return Ok();
         }

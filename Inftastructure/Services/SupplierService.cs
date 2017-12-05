@@ -53,9 +53,21 @@ namespace Inftastructure.Services
             return _mapper.Map<SupplierDto>(supplier);
         }
 
-        public Task UpdateAsync(SupplierForUpdateDto element)
+        public async Task UpdateAsync(SupplierForUpdateDto element)
         {
-            throw new NotImplementedException("Supplier: UpdateAsync");
+            var supplier = _context.Suppliers.FirstOrDefault(v => v.SupplierCode.Equals(element.SupplierCode));
+            if (supplier == null)
+                throw new ArgumentException("The given supplier for an update is invalid.");
+
+            var updatedSupplier = new Supplier
+            {
+                SupplierCode = element.SupplierCode,
+                Name = element.Name ?? supplier.Name,
+                Details = element.Details ?? supplier.Details
+            };
+
+            _context.Entry(supplier).CurrentValues.SetValues(updatedSupplier);
+            await _context.SaveChangesAsync();
         }
     }
 }

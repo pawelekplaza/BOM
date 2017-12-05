@@ -59,9 +59,25 @@ namespace Inftastructure.Services
             return _mapper.Map<ProductDto>(product);
         }
 
-        public Task UpdateAsync(ProductForUpdateDto element)
+        public async Task UpdateAsync(ProductForUpdateDto element)
         {
-            throw new NotImplementedException("Product: UpdateAsync");
+            var product = _context.Products.FirstOrDefault(v => v.ProductCode.Equals(element.ProductCode));
+            if (product == null)
+                throw new ArgumentException("The given product for an update is invalid.");
+
+            var updatedProduct = new Product
+            {
+                ProductCode = element.ProductCode,
+                Name = element.Name ?? product.Name,
+                Description = element.Description ?? product.Description                
+            };
+
+            if (!string.IsNullOrWhiteSpace(element.SupplierCode))
+                updatedProduct.Supplier = _context.Suppliers
+                    .FirstOrDefault(v => v.SupplierCode.Equals(element.SupplierCode));
+
+            _context.Entry(product).CurrentValues.SetValues(updatedProduct);
+            await _context.SaveChangesAsync();
         }
     }
 }

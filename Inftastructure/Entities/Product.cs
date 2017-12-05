@@ -17,7 +17,7 @@ namespace Inftastructure.Entities
         [ForeignKey("SupplierCode")]
         public virtual Supplier Supplier { get; set; }
 
-        protected Product()
+        public Product()
         {
 
         }

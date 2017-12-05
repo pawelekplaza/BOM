@@ -59,6 +59,18 @@ namespace Inftastructure.Services
 
         public async Task UpdateAsync(BomForUpdateDto element)
         {
+            var bom = _context.Boms.FirstOrDefault(v => v.BomCode.Equals(element.BomCode));
+            if (bom == null)
+                throw new ArgumentException("The given bom for an update is invalid.");
+
+            var updatedBom = new Bom
+            {
+                BomCode = element.BomCode,
+                Quantity = element.Quantity ?? bom.Quantity
+            };
+
+            // todo
+
             throw new NotImplementedException("Bom: UpdateAsync");
         }
     }
