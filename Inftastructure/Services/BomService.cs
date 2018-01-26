@@ -25,7 +25,7 @@ namespace Inftastructure.Services
             var parentProduct = _context.Products.Where(v => v.ProductCode.Equals(element.ParentProductCode)).FirstOrDefault();
             //todo child
 
-            var bom = new Bom(product, parentProduct, element.Quantity ?? 0, null);
+            var bom = new Bom(product, parentProduct, element.Quantity ?? 0);
             _context.Boms.Add(bom);
             await _context.SaveChangesAsync();
         }

@@ -9,13 +9,13 @@ namespace Inftastructure.Entities
         [Key]
         public string ProductCode { get; set; } = Guid.NewGuid().ToString("N");
 
+        [ForeignKey("SupplierCode")]
+        public virtual Supplier Supplier { get; set; }
+
         [Required(ErrorMessage = "Name of the product is required.")]
         public string Name { get; set; }
         public string Description { get; set; }
-        public string SupplierCode { get; set; }
-
-        [ForeignKey("SupplierCode")]
-        public virtual Supplier Supplier { get; set; }
+        public string SupplierCode { get; set; }        
 
         public Product()
         {

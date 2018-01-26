@@ -40,10 +40,11 @@ namespace Inftastructure.Services
         public async Task<IEnumerable<ProductDto>> GetAllAsync()
         {
             var products = new List<ProductDto>();
+            // todo: should not create a new product object because it creates a new ProductCode for it.
             var query = _context.Products.Join(_context.Suppliers,
                 product => product.SupplierCode,
                 supplier => supplier.SupplierCode,
-                (p, s) => new Product(p.Name, p.Description, s));
+                (p, s) => new Product(p.Name, p.Description, s) { ProductCode = p.ProductCode });
 
             foreach (var product in query)
                 products.Add(_mapper.Map<ProductDto>(product));

@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Inftastructure.Entities
 {
@@ -12,6 +12,7 @@ namespace Inftastructure.Entities
         [Required(ErrorMessage = "Name of the supplier is required.")]
         public string Name { get; set; }
         public string Details { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
 
         public Supplier()
         {
